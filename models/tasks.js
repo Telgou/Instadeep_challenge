@@ -34,7 +34,6 @@ module.exports = (Sequelize, Sequelize) => {
     })
     return Task;
 }*/
-
 module.exports = {
     up: async (queryInterface, Sequelize) => {
         await queryInterface.addColumn('tasks', 'title', {
@@ -66,8 +65,11 @@ module.exports = {
         });
     },
     down: async (queryInterface, Sequelize) => {
-        await queryInterface.removeColumn('tasks', 'createdDate');
-        await queryInterface.removeColumn('tasks', 'percentCompleted');
-        await queryInterface.removeColumn('tasks', 'isCompleted');
+        await queryInterface.removeColumn('tasks', 'title');
+        await queryInterface.removeColumn('tasks', 'description');
+        await queryInterface.removeColumn('tasks', 'priority');
+        await queryInterface.removeColumn('tasks', 'category');
+        await queryInterface.removeColumn('tasks', 'dueDate');
+        await queryInterface.removeColumn('tasks', 'completionStatus');
     },
 };
