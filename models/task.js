@@ -1,5 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
-
+/*
 module.exports = (Sequelize, Sequelize) => {
     const Task = Sequelize.define("task", {
         title: {
@@ -33,4 +33,41 @@ module.exports = (Sequelize, Sequelize) => {
 
     })
     return Task;
-}
+}*/
+
+module.exports = {
+    up: async (queryInterface, Sequelize) => {
+        await queryInterface.addColumn('tasks', 'title', {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+        });
+        await queryInterface.addColumn('tasks', 'description', {
+            type: DataTypes.STRING,
+
+        });
+        await queryInterface.addColumn('tasks', 'priority', {
+            type: DataTypes.STRING,
+            allowNull: false,
+
+        });
+        await queryInterface.addColumn('tasks', 'category', {
+            type: DataTypes.STRING,
+            allowNull: false,
+
+        });
+        await queryInterface.addColumn('tasks', 'dueDate', {
+            type: DataTypes.DATE,
+
+        });
+        await queryInterface.addColumn('tasks', 'completionStatus', {
+            type: DataTypes.DATE,
+
+        });
+    },
+    down: async (queryInterface, Sequelize) => {
+        await queryInterface.removeColumn('tasks', 'createdDate');
+        await queryInterface.removeColumn('tasks', 'percentCompleted');
+        await queryInterface.removeColumn('tasks', 'isCompleted');
+    },
+};
